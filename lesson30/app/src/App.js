@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Name from "./components/AComponent";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [title, setTitle] = useState("1. tytuł strony.");
+  const [licznik, setLicznik] = useState(2);
+  // let nazwyPorzadkowe = ["Pierwszy", "Drugi", "Trzeci"];
+
+  const onClick = () => {
+    setLicznik(licznik + 1);
+    //  setTitle(nazwyPorzadkowe[licznik] + ". tytuł strony.");
+    setTitle(licznik + ". tytuł strony.");
+  };
+  useEffect(() => {
+    return () => {
+      alert("Teraz był efekt!!");
+    };
+  }, [title]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Name name="Tomek" />
+      <Name name="Romek" />
+      <Name name="Atomek" />
+      <br />
+      <br />
+      <br />
+      <br />
+      <button onClick={onClick}>Zmień tytuł strony</button>
+      {title}
     </div>
   );
 }
